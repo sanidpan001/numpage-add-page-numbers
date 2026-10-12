@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NumPage — Add Page Numbers to PDF Online Free: Position, Format & Start Number</title>
+<meta name="description" content="Free page-number tool for PDFs. Add page numbers in any position with plain, 'Page X of N' or roman formats, custom start numbers and a skip-cover option.">
+<link rel="canonical" href="https://numpage.fixoraa.tech/">
+<meta property="og:title" content="NumPage — Add Page Numbers to PDF Online Free: Position, Format & Start Number">
+<meta property="og:description" content="Free page-number tool for PDFs. Add page numbers in any position with plain, 'Page X of N' or roman formats, custom start numbers and a skip-cover option.">
+<meta property="og:url" content="https://numpage.fixoraa.tech/">
+<meta property="og:type" content="website">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';</script>
+<style>
+:root{--pri:#065F46;--acc:#F43F5E;--bgc:#ECFDF5}
+body{background:var(--bgc);font-family:'Segoe UI',system-ui,sans-serif}
+.pri{background:var(--pri)} .prit{color:var(--pri)}
+.btn{background:var(--pri);color:#fff;padding:.6rem 1.2rem;border-radius:.6rem;font-weight:600;cursor:pointer;border:none}
+.btn:hover{opacity:.9} .btn2{background:var(--acc);color:#111;padding:.6rem 1.2rem;border-radius:.6rem;font-weight:600;cursor:pointer;border:none}
+.btn:disabled,.btn2:disabled{opacity:.45;cursor:not-allowed}
+input,select,textarea{border:1.5px solid #cbd5e1;border-radius:.55rem;padding:.55rem .7rem;width:100%;background:#fff;color:#0f172a}
+input[type=file]{padding:.45rem .6rem} input[type=range]{padding:0} input[type=checkbox],input[type=radio]{width:auto}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--pri);border-color:transparent}
+label{font-size:.83rem;font-weight:600;display:block;margin-bottom:.3rem}
+.card{background:#fff;border-radius:1rem;box-shadow:0 8px 30px rgba(15,23,42,.08);padding:1.4rem}
+article p{margin:.7rem 0;line-height:1.75;color:#334155}
+article h2{font-size:1.45rem;font-weight:800;margin:1.6rem 0 .4rem;color:#0f172a}
+.faq{background:#fff;border-radius:.7rem;padding:.9rem 1.1rem;margin:.55rem 0;box-shadow:0 2px 10px rgba(15,23,42,.05)}
+.faq summary{font-weight:700;cursor:pointer}
+table.dt{width:100%;border-collapse:collapse} table.dt th,table.dt td{border:1px solid #e2e8f0;padding:.45rem .6rem;text-align:left;font-size:.9rem}
+table.dt th{background:#f1f5f9}
+.drop{border:2px dashed #94a3b8;border-radius:.8rem;padding:1.1rem;text-align:center;background:#f8fafc}
+canvas.prev{max-width:100%;border:1px solid #e2e8f0;border-radius:.5rem;background:#fff}
+
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "NumPage", "url": "https://numpage.fixoraa.tech/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Free page-number tool for PDFs. Add page numbers in any position with plain, 'Page X of N' or roman formats, custom start numbers and a skip-cover option."}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I skip numbering the cover page?", "acceptedAnswer": {"@type": "Answer", "text": "Yes \u2014 tick 'Skip the first page' and numbering begins on page two, starting from your chosen start number. The preview strip confirms exactly how the cover was handled."}}, {"@type": "Question", "name": "How do I start numbering from a number other than 1?", "acceptedAnswer": {"@type": "Answer", "text": "Set 'Start numbering at' to any value \u2014 useful for files that continue another document, or for body pages that follow roman-numbered front matter."}}, {"@type": "Question", "name": "What does 'Page X of N' count when I skip the cover?", "acceptedAnswer": {"@type": "Answer", "text": "N counts the numbered pages (total pages minus the skipped cover), so the last page reads correctly \u2014 for example, 'Page 19 of 19' in a 20-page document with a cover."}}, {"@type": "Question", "name": "Can numbers alternate sides like in a book?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The alternate-sides option places numbers at the outer corners \u2014 right on odd pages, left on even \u2014 the classic pattern for bound, double-sided documents."}}, {"@type": "Question", "name": "Will numbering change my document's content?", "acceptedAnswer": {"@type": "Answer", "text": "No. Numbers are stamped into the margin band of each page; your text, images and layout are untouched, and your original file is never modified \u2014 the numbered version is a new copy."}}, {"@type": "Question", "name": "Is my PDF uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "Never. Numbering happens entirely in your browser, so unpublished and confidential documents stay on your device."}}]}</script>
+</head>
+<body id="top">
+<header class="sticky top-0 z-40 shadow-md" style="background:#022C22">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex items-center justify-between">
+    <a href="#top" class="text-xl font-extrabold tracking-tight" style="color:#ECFDF5">🔢 NumPage</a>
+    <nav class="flex gap-5 text-sm font-semibold" style="color:#ECFDF5">
+      <a href="#top" class="hover:underline">Home</a>
+      <a href="https://fixoraa.tech" class="hover:underline">More Tools</a>
+    </nav>
+  </div>
+</header>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pt-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <div class="origin-top scale-[0.44] sm:scale-100 shrink-0">
+        <script>
+          atOptions = { 'key' : '4e68ac77881c17fe128a46565d9a4e8c', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+        </script>
+        <script src="https://www.highrevenueformat.com/4e68ac77881c17fe128a46565d9a4e8c/invoke.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+<main class="mx-auto max-w-6xl px-4 sm:px-6 py-8">
+  <div class="text-center mb-6">
+    <h1 class="text-3xl sm:text-4xl font-extrabold" style="color:#0f172a">Add Page Numbers to a PDF — Free</h1>
+    <p class="mt-2 text-slate-600 max-w-2xl mx-auto">Reports, theses, manuals and ebooks all read better numbered — and reviewers insist on it. NumPage stamps clean page numbers exactly where you want them: any corner or centre, in the format your style guide demands.</p>
+    <span class="inline-block mt-3 px-3 py-1 rounded-full text-xs font-bold text-white pri">✓ Unlimited Free Usage — No Signup, No Watermark</span>
+    <p class="mt-2 text-xs text-slate-500">🔒 100% private: your file is processed entirely in your browser and never uploaded to any server.</p>
+  </div>
+  <div class="grid md:grid-cols-5 gap-6">
+  <div class="card md:col-span-2 space-y-3">
+    <div class="drop"><label>Your PDF</label><input id="file" type="file" accept="application/pdf"></div>
+    <div class="grid grid-cols-2 gap-3"><div><label>Position</label><select id="pos"><option value="bc">Bottom centre</option><option value="br">Bottom right</option><option value="bl">Bottom left</option><option value="tc">Top centre</option><option value="tr">Top right</option><option value="tl">Top left</option></select></div>
+    <div><label>Format</label><select id="fmt"><option value="plain">1, 2, 3…</option><option value="pageof">Page 1 of 20</option><option value="roman">i, ii, iii…</option><option value="dash">— 1 —</option></select></div></div>
+    <div class="grid grid-cols-2 gap-3"><div><label>Start numbering at</label><input id="start" type="number" value="1"></div><div><label>Font size (pt)</label><input id="fsize" type="number" value="10"></div></div>
+    <div><label><input type="checkbox" id="skip"> Skip the first page (cover)</label></div>
+    <div><label><input type="checkbox" id="alt"> Alternate sides on odd/even pages (book style)</label></div>
+    <button class="btn w-full" id="go" onclick="run()">Add Page Numbers</button>
+    <button class="btn2 w-full" id="dl" style="display:none">⬇ Download numbered PDF</button>
+    <p id="status" class="text-sm font-semibold"></p>
+  </div>
+  <div class="card md:col-span-3">
+    <h3 class="font-bold mb-2">Preview strip — first pages with their numbers</h3>
+    <div id="strip" class="flex gap-3 flex-wrap text-sm text-slate-600">Your preview strip will appear here after numbering, showing exactly which label each of the first pages received — including cover handling and your chosen start number.</div>
+  </div></div>
+</main>
+<div class="no-print mx-auto max-w-6xl px-4 sm:px-6 pb-4" role="complementary" aria-label="Advertisement">
+  <div class="mx-auto text-center" style="max-width:728px">
+    <span class="block text-[10px] tracking-[0.18em] uppercase text-slate-400 mb-1.5">Advertisement</span>
+    <div class="flex justify-center overflow-hidden">
+      <script async src="https://js.wpadmngr.com/static/adManager.js" data-admpid="464498"></script>
+    </div>
+  </div>
+</div>
+<section class="mx-auto max-w-4xl px-4 sm:px-6 pb-6">
+  <article>
+  <h2>Small numbers, outsized importance</h2>
+<p>Page numbers are the cheapest professionalism a document can buy. They let a reviewer say 'see page 14' instead of 'somewhere near the middle'; they let a printed stack be reassembled after it drops on the floor; they let a table of contents and an index mean something. Their absence is one of the first things examiners, editors and clients notice — and one of the last things authors remember, usually minutes before submission, when the document is already a PDF and the source file is closed, lost or somebody else's problem.</p>
+<p>NumPage exists for that moment and for the calmer ones before it. It stamps numbers onto the finished PDF itself — no source file, no word processor, no re-export. You choose the position, the format and the starting number; the tool applies them uniformly to every page and shows you a preview strip of exactly which label each early page received, so there are no surprises hiding on page one.</p>
+<h2>Formats and the conventions behind them</h2>
+<p>Plain digits suit most working documents. 'Page 3 of 20' earns its keep in reports and submissions, where it reassures the reader that nothing is missing — a missing final page announces itself. Roman numerals belong to front matter: prefaces, introductions and tables of contents traditionally carry lowercase roman folios while the body restarts at arabic 1, a convention readers of books absorb without noticing. NumPage's start-number control makes that two-system trick achievable: number the front matter in roman, then run the body separately starting at 1.</p>
+<p>Position carries conventions too. Bottom centre is the neutral default of reports and theses. Outer corners — alternating with odd and even pages in book style — keep numbers visible on bound, facing pages, which is why novels use them. Top positions suit documents whose bottoms are crowded with footnotes or signature blocks. The alternate-sides option automates the book pattern; the six fixed positions cover everything else a style guide is likely to demand.</p>
+<h2>How to number a PDF, step by step</h2>
+<p>Load the PDF and make three decisions. Position first — bottom centre unless you have a reason otherwise. Format second — plain for working papers, 'Page X of N' for submissions, roman for front matter. Then the quiet details: the start number (1 unless this file continues another, or front matter precedes it), the font size (10pt reads cleanly on A4; go 9 for dense pages, 11 for large-print documents), and whether the cover should be skipped — it almost always should, since a '1' stamped on a title page looks like a mistake.</p>
+<p>Press Add Page Numbers and read the preview strip before downloading: it lists the label each of the first dozen pages received, cover handling included. That strip is your proofread. If the cover shows a number, or the count starts wrong, adjust and re-run — the original file is untouched, so iteration costs seconds. Download the numbered copy under its new name and submit with confidence.</p>
+<h2>Covers, appendices and other numbering puzzles</h2>
+<p>Real documents rarely number uniformly from the first leaf. A thesis may have a cover, an abstract in roman, a body from 1, and appendices continuing the body's sequence. A merged report may begin at page 40 of a larger volume. NumPage's tools compose to handle the realistic cases: split your handling into passes — number the front-matter file in roman with the cover skipped, number the body starting at 1, then merge — or use the start-number control when a single file simply continues an earlier count.</p>
+<p>What about documents that already carry numbers in the wrong style? Stamping a second set creates a confusing palimpsest; the clean fix is to number a clean export, or accept the existing folios. And when a document will be printed double-sided and bound, remember the alternate-sides option: numbers belong at the outer edge, where thumbs and eyes actually look for them.</p>
+<h2>Typography that stays invisible</h2>
+<p>Good page numbers are noticed only when needed. That means a sober font — NumPage uses a clean Helvetica — a modest size, consistent margins from the page edge, and a neutral colour that survives photocopying. Decorative numbering fights the document: an ornate folio on a legal filing or a financial report reads as noise, and inconsistency between sections reads as carelessness. Uniformity is the aesthetic; the reader should feel the document was always numbered, not that numbering happened to it.</p>
+<p>Placement respects the page's existing furniture for the same reason. Numbers sit in the margin band — clear of body text, footnotes and signature blocks — at a consistent offset from the trim edge. If your document's pages vary in size, each page's number is positioned from its own dimensions, so a landscape appendix in a portrait report still gets its folio in the right corner of its own sheet.</p>
+<h2>Privacy and the last-minute workflow</h2>
+<p>Submission-eve documents are rarely documents you want on a stranger's server: the unpublished thesis, the tender bid, the legal exhibit. NumPage numbers files inside your browser tab; the PDF never leaves your device, and nothing remains when the tab closes. There is no queue at the busiest moment of your deadline, because your own processor does the stamping.</p>
+<p>It is also unlimited in the way deadline tools must be: re-run it as many times as your proofreading demands. Wrong start number, wrong corner, cover accidentally stamped — each fix is a fresh copy from your untouched original, generated in seconds. Professional documents deserve that unhurried final check, even at the last minute — especially at the last minute.</p>
+<h2>Numbering multi-part documents without tears</h2>
+<p>Assemble the parts in reading order first, then number once, globally — numbering sections separately and merging afterwards is how documents end up with three page 7s. If a part genuinely must keep its own sequence, such as an appendix with A-1 style folios, number the body first, then handle the appendix as its own file and merge last, accepting its independent scheme as a deliberate design. For documents that will be re-issued, note the numbering settings — format, start, skipped cover — in the file's own records or a covering note; re-creating a scheme from memory at revision time is where inconsistencies breed. Consistency across a document series is a quiet form of credibility: readers may never praise it, but they always notice its absence.</p>
+  <h2>Frequently Asked Questions</h2>
+  <details class="faq"><summary>Can I skip numbering the cover page?</summary><p>Yes — tick 'Skip the first page' and numbering begins on page two, starting from your chosen start number. The preview strip confirms exactly how the cover was handled.</p></details>
+<details class="faq"><summary>How do I start numbering from a number other than 1?</summary><p>Set 'Start numbering at' to any value — useful for files that continue another document, or for body pages that follow roman-numbered front matter.</p></details>
+<details class="faq"><summary>What does 'Page X of N' count when I skip the cover?</summary><p>N counts the numbered pages (total pages minus the skipped cover), so the last page reads correctly — for example, 'Page 19 of 19' in a 20-page document with a cover.</p></details>
+<details class="faq"><summary>Can numbers alternate sides like in a book?</summary><p>Yes. The alternate-sides option places numbers at the outer corners — right on odd pages, left on even — the classic pattern for bound, double-sided documents.</p></details>
+<details class="faq"><summary>Will numbering change my document's content?</summary><p>No. Numbers are stamped into the margin band of each page; your text, images and layout are untouched, and your original file is never modified — the numbered version is a new copy.</p></details>
+<details class="faq"><summary>Is my PDF uploaded to a server?</summary><p>Never. Numbering happens entirely in your browser, so unpublished and confidential documents stay on your device.</p></details>
+  </article>
+</section>
+<footer class="mt-6 py-8" style="background:#022C22;color:#ECFDF5">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 text-center text-sm">
+    <p class="font-bold text-base">NumPage</p>
+    <p class="opacity-80 mt-1">Free page-number tool for PDFs. Add page numbers in any position with plain, 'Page X of N' or roman formats, custom start numbers and a skip-cover option.</p>
+    <p class="mt-2"><a href="#top" class="underline">Home</a> · <a href="https://fixoraa.tech" class="underline">More Tools</a></p>
+    <p class="fx-credit" style="text-align:center;font-size:12.5px;opacity:.62;margin:10px auto 2px;letter-spacing:.01em">Made by <a href="https://fixoraa.tech" target="_blank" rel="noopener" style="color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:2px">Fixoraa</a></p>
+  </div>
+</footer>
+<script id="lib-numpage">
+
+function toRoman(num){ if(num<=0||num>3999) return String(num); var t=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']]; var s=''; for(var k=0;k<t.length;k++){ while(num>=t[k][0]){ s+=t[k][1]; num-=t[k][0]; } } return s; }
+function formatLabel(style, n, total){ if(style==='plain') return String(n); if(style==='pageof') return 'Page '+n+' of '+total; if(style==='roman') return toRoman(n).toLowerCase(); if(style==='dash') return '— '+n+' —'; return String(n); }
+if (typeof module!=="undefined") module.exports={toRoman:toRoman, formatLabel:formatLabel};
+
+</script>
+<script>
+
+const $=id=>document.getElementById(id);
+function fmtBytes(b){if(b===0)return '0 B';const k=1024,s=['B','KB','MB','GB'];const i=Math.floor(Math.log(b)/Math.log(k));return (b/Math.pow(k,i)).toFixed(i?1:0)+' '+s[i];}
+function setStatus(m,ok){const el=$('status');if(!el)return;el.textContent=m;el.style.color=ok===false?'#dc2626':'inherit';}
+function download(bytes,name,type){const blob=bytes instanceof Blob?bytes:new Blob([bytes],{type:type||'application/pdf'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},800);}
+async function readFile(input){const f=input.files&&input.files[0];if(!f)throw new Error('Please choose a PDF file first.');return {file:f,buf:await f.arrayBuffer()};}
+function showDl(id,bytes,name){const b=$(id);b.style.display='inline-block';b.onclick=()=>download(bytes,name);}
+
+
+async function run(){
+  const btn=$('go'); btn.disabled=true;
+  try{
+    const {file,buf}=await readFile($('file'));
+    const doc=await PDFLib.PDFDocument.load(buf.slice(0));
+    const font=await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+    const pages=doc.getPages(); const total=pages.length;
+    const start=parseInt($('start').value)||1, fs=Math.max(6,parseFloat($('fsize').value)||10);
+    const pos=$('pos').value, style=$('fmt').value, skip=$('skip').checked, alt=$('alt').checked;
+    const labels=[];
+    pages.forEach((page,ix)=>{
+      const phys=ix+1;
+      if(skip&&ix===0){ labels.push('(cover — skipped)'); return; }
+      const n=start+(skip? ix-1 : ix);
+      const label=formatLabel(style,n,total-(skip?1:0)+ (start-1)*0 + (skip?0:0) || total);
+      const lab= style==='pageof' ? 'Page '+n+' of '+(total-(skip?1:0)) : label;
+      const {width,height}=page.getSize();
+      const tw=font.widthOfTextAtSize(lab,fs);
+      let x,y;
+      const p = alt ? (phys%2===0?'bl':'br') : pos;
+      if(p==='bc'||p==='tc') x=(width-tw)/2; else if(p==='br'||p==='tr') x=width-tw-42; else x=42;
+      y = (p==='tc'||p==='tr'||p==='tl') ? height-28 : 22;
+      page.drawText(lab,{x:x,y:y,size:fs,font:font,color:PDFLib.rgb(0.15,0.15,0.15)});
+      labels.push('Page '+(ix+1)+' → “'+lab+'”');
+    });
+    const bytes=await doc.save();
+    $('strip').innerHTML=labels.slice(0,12).map(l=>'<span class="px-3 py-2 rounded-lg bg-emerald-50 font-semibold">'+l+'</span>').join('')+(labels.length>12?'<span class="px-3 py-2">…and '+(labels.length-12)+' more pages</span>':'');
+    showDl('dl',bytes,file.name.replace(/\.pdf$/i,'')+'-numbered.pdf');
+    setStatus('Done ✔ Numbered '+total+' pages.');
+  }catch(e){ setStatus('⚠ '+(e.message||e),false); }
+  btn.disabled=false;
+}
+
+</script>
+</body>
+</html>
